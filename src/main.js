@@ -3,7 +3,7 @@ import App from './App.svelte';
 const app = new App({
 	target: document.body,
 	props: {
-		name: 'world'
+		endpoint: 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'
 	}
 });
 
