@@ -1,41 +1,27 @@
 <script>
-	import router, { curRoute } from './router.js';
-	import Hero from './components/Hero.svelte'; 
+  import { Router, Link, Route } from "svelte-routing";
 	import Header from './components/Header.svelte'; 
 	import Footer from './components/Footer.svelte'; 
-	import { onMount } from 'svelte';
-	export let endpoint;
-	onMount(() => {
-		curRoute.set(window.location.pathname);
-		if (!history.state) {
-			window.history.replaceState({path: window.location.pathname}, '',   window.location.href)
-		}
-	});
-	function handleBackNavigation(event){
-  	curRoute.set(event.state.path)
-	}	
+	import Home from './Pages/Home.svelte'; 
+	import PicOfTheDay from './Pages/PicOfTheDay.svelte'; 
+	import SpaceFacts from './Pages/SpaceFacts.svelte'; 
+	import WheresTheISS from './Pages/WheresTheISS.svelte'; 
+  export let url = "";
 </script>
 
-<svelte:window on:popstate={handleBackNavigation} />
-<main>
+<Router url="{url}">
 	<Header></Header>
-	<div id="pageContent">
-		<svelte:component this={router[$curRoute]} />
-	</div>
+  <div class="pageContent">
+    <Route path="potd" component="{PicOfTheDay}" />
+    <Route path="where-iss" component="{SpaceFacts}" />
+    <Route path="space-facts" component="{WheresTheISS}" />
+    <Route path="/" component="{Home}" />
+  </div>
 	<Footer></Footer>
-</main>
+</Router>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+.pageContent {
+  flex: 1 0 auto;
+}
 </style>

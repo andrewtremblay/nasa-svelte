@@ -1,4 +1,4 @@
-<div>I'm Hero</div>
+<div>I'm Carousel</div>
 
 <style>
 div {
