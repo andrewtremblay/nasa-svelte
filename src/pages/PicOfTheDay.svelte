@@ -1,1 +1,0 @@
-<div>Pic Of Day</div>
