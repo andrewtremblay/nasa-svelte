@@ -97,14 +97,27 @@
 
 <div class='container'>
 	<h1>Pic of the Day</h1>
-  <img alt={potd.copyright} src={potd.url}/> <!-- potd.hdurl -->
-  <div class='text-container'>
-    <div  class='text'>
-      <div class='title'>{potd.title}</div>
-      <div>
-       <p class='desc' id="desc">{potd.explanation}</p>
-       <a href="pic-of-the-day">(read more)</a>
-     </div>
+  {#if potd.media_type === 'image'}
+    <img class="" alt={potd.copyright} src={potd.url}/>
+    <div class='text-container'>
+      <div  class='text'>
+        <div class='title'>{potd.title}</div>
+        <div>
+        <p class='desc' id="desc">{potd.explanation}</p>
+        <a href="pic-of-the-day">(read more)</a>
+      </div>
+      </div>
     </div>
-  </div>
+  {:else}
+    <img alt={potd.media_type} src={'placeholder.jpg'}/>
+    <div class='text-container'>
+      <div  class='text'>
+        <div class='title'>{potd.title}</div>
+        <div>
+        <p class='desc' id="desc">NOT AN IMAGE ({potd.media_type} instead) {potd.url}</p>
+        <a href="pic-of-the-day">(read more)</a>
+      </div>
+      </div>
+    </div>
+  {/if}
 </div>

@@ -77,10 +77,18 @@
 <div>
 	<h1>Pic of the Day</h1>
 	<div class='image-and-text'>
-		<img alt={potd.copyright} src={potd.url}/> <!-- potd.hdurl -->
-		<div class='text'>
-			<div class='title'>{potd.title}</div>
-			<div class='desc'>{potd.explanation}</div>
-		</div>
+	  {#if potd.media_type === 'image'}
+    	<img class="" alt={potd.copyright} src={potd.url}/>
+			<div class='text'>
+				<div class='title'>{potd.title}</div>
+				<div class='desc'>{potd.explanation}</div>
+			</div>
+		{:else}
+			<img alt={potd.media_type} src={'placeholder.jpg'}/>
+			<div class='text'>
+				<div class='title'>NOT AN IMAGE ({potd.media_type} instead)</div>
+				<div class='desc'>{potd.url}</div>
+			</div>
+		{/if}
 	</div>
 </div>
